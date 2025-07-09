@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omnicli - 3D Experience Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Orbitron', 'Agency FB', 'Arial Narrow', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Navbar styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .navbar-brand {
+            font-family: 'Orbitron', 'Agency FB', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: black;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .navbar-links a {
+            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-weight: 500;
+            color: black;
+            text-decoration: none;
+            letter-spacing: 0.8px;
+        }
+        .contact-button {
+            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-weight: 600;
+            background-color: black;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-right: 10px;
+            letter-spacing: 1px;
+        }
+        
+        /* First section styles */
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero-title {
+            font-family: 'Orbitron', 'Agency FB', sans-serif;
+            font-weight: 900;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .hero-subtitle {
+            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-weight: 400;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            letter-spacing: 1px;
+        }
+        .demo-button {
+            font-family: 'Orbitron', 'Agency FB', sans-serif;
+            font-weight: 700;
+            background-color: white;
+            color: black;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            letter-spacing: 1.5px;
+        }
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Second section styles */
+        .features-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .section-title {
+            font-family: 'Orbitron', 'Agency FB', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .section-subtitle {
+            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-weight: 400;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            letter-spacing: 0.8px;
+        }
+        .features-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .feature-card {
+            background-color: white;
+            color: black;
+            width: 250px;
+            height: 250px;
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .feature-title {
+            font-family: 'Orbitron', 'Agency FB', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .feature-description {
+            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-weight: 400;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            letter-spacing: 0.8px;
+        }
+        
+        /* Third section styles */
+        .comparison-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .comparison-title {
+            font-family: 'Orbitron', 'Agency FB', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .comparison-subtitle {
+            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-weight: 400;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            letter-spacing: 0.8px;
+        }
+        .comparison-table {
+            width: 100%;
+            max-width: 900px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: transparent;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .comparison-table th, 
+        .comparison-table td {
+            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            background-color: transparent;
+            letter-spacing: 0.7px;
+        }
+        .comparison-table th {
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+        }
+        .comparison-table tr:hover td {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .checkmark {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .xmark {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        /* Fourth section styles */
+        .construction-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+        .black-panel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .panel-content {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        .panel-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        .panel-title {
+            font-family: 'Orbitron', 'Agency FB', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .panel-subtitle {
+            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: #aaa;
+            font-style: italic;
+            letter-spacing: 0.8px;
+        }
+        .panel-heading {
+            font-family: 'Orbitron', 'Agency FB', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: white;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .panel-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .panel-list li {
+            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-weight: 400;
+            margin-bottom: 0.8rem;
+            color: #ddd;
+            letter-spacing: 0.7px;
+        }
+        .powered-by {
+            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-weight: 300;
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 2rem;
+            text-align: center;
+            width: 100%;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Existing styles */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+        }
+        .content-section {
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            margin-top: 60px;
+        }
+        #progress-container {
+            font-family: 'Orbitron', 'Agency FB', sans-serif;
+            font-weight: 600;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            z-index: 100;
+            letter-spacing: 1px;
+        }
+    </style>
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@v0.163.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@v0.163.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">OMNICLI</a>
+        <div class="navbar-links">
+            <a href="#">SOLUTIONS</a>
+            <a href="#">INDUSTRIES</a>
+            <a href="#">PRICING</a>
+            <a href="#">DOCS</a>
+        </div>
+        <a href="#" class="contact-button">CONTACT US</a>
+    </nav>
+
+    <div id="canvas-container"></div>
+    <div id="progress-container">LOADING CONCEPT CAR...</div>
+    
+    <!-- First section - car loads here immediately -->
+    <div class="content-section">
+        <div class="hero-content">
+            <h1 class="hero-title">IMMERSE YOURSELF IN 3D EXPERIENCES</h1>
+            <p class="hero-subtitle">TRANSFORM YOUR VISUAL COMMERCE WITH AI-POWERED GAUSSIAN SPLATTING. CREATE INTERACTIVE 3D EXPERIENCES THAT CONVERT BROWSERS INTO BUYERS.</p>
+            <a href="#" class="demo-button">TRY 3D DEMO</a>
+        </div>
+    </div>
+    
+    <!-- Other sections with scroll-activated models -->
+    <div class="content-section" data-model="livingroom">
+        <div class="features-section">
+            <h2 class="section-title">WHY OMNICLI</h2>
+            <p class="section-subtitle">THE ONLY PLATFORM THAT DELIVERS PHOTOREALISTIC QUALITY, LIGHTNING SPEED, AND EFFORTLESS INTEGRATION</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 class="feature-title">PHOTOREALISTIC QUALITY</h3>
+                    <p class="feature-description">CINEMA-GRADE 3D MODELS FROM ORDINARY SMARTPHONE PHOTOS</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">LIGHTNING SPEED</h3>
+                    <p class="feature-description">100+ FPS WEBGPU RENDERING WITH INSTANT LOADING</p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">1-CLICK EMBED</h3>
+                    <p class="feature-description">COPY IFRAME CODE AND EMBED ANYWHERE IN SECONDS</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section" data-model="bedroom">
+        <div class="comparison-section">
+            <h2 class="comparison-title">HOW WE COMPARE</h2>
+            <p class="comparison-subtitle">WHY YOU SHOULD CHOOSE OMNICLI</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>SOLUTION</th>
+                        <th>QUALITY</th>
+                        <th>IMAGES NEEDED</th>
+                        <th>PERFORMANCE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>OMNICLI</strong><br>
+                            <span class="checkmark">✓ WEBGPU OPTIMIZED</span><br>
+                            <span class="checkmark">✓ 1-CLICK EMBED</span><br>
+                            <span class="checkmark">✓ MOBILE OPTIMIZED</span><br>
+                            <span class="checkmark">✓ SOC-2 COMPLIANT</span>
+                        </td>
+                        <td>PHOTOREALISTIC</td>
+                        <td>10-20</td>
+                        <td>100+ FPS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MATTERPORT</strong><br>
+                            <span class="xmark">× REQUIRES SPECIAL CAMERA</span><br>
+                            <span class="xmark">× LIMITED CUSTOMIZATION</span><br>
+                            <span class="xmark">× HEAVY FILES</span>
+                        </td>
+                        <td>GOOD</td>
+                        <td>360° SCAN</td>
+                        <td>30-60 FPS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>THREEKIT</strong><br>
+                            <span class="xmark">× REQUIRES 3D MODELING</span><br>
+                            <span class="xmark">× COMPLEX SETUP</span><br>
+                            <span class="xmark">× ENTERPRISE ONLY</span>
+                        </td>
+                        <td>SYNTHETIC</td>
+                        <td>3D MODEL</td>
+                        <td>60 FPS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LUMA AI</strong><br>
+                            <span class="xmark">× VIDEO REQUIRED</span><br>
+                            <span class="xmark">× LIMITED EDITING</span><br>
+                            <span class="xmark">× NO EMBED OPTIONS</span>
+                        </td>
+                        <td>GOOD</td>
+                        <td>VIDEO</td>
+                        <td>30 FPS</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="content-section" data-model="kitchen">
+        <div class="construction-section">
+            <h2>CONSTRUCTION</h2>
+            <div class="black-panel">
+                <div class="panel-content">
+                    <div class="panel-column">
+                        <h3 class="panel-title">SPLATTECH</h3>
+                        <p class="panel-subtitle">TRANSFORMING VISUAL COMMERCE WITH AI-POWERED GAUSSIAN SPLATTING TECHNOLOGY. CREATE PHOTOREALISTIC 3D EXPERIENCES FROM ORDINARY PHOTOS.</p>
+                        <p class="powered-by">(POWERED BY GAUSSIAN SPLATTING™)</p>
+                    </div>
+                    <div class="panel-column">
+                        <h4 class="panel-heading">SOLUTIONS</h4>
+                        <ul class="panel-list">
+                            <li>3D PRODUCT CONFIGURATOR</li>
+                            <li>AR EXPERIENCES</li>
+                            <li>API & SDK</li>
+                        </ul>
+                    </div>
+                    <div class="panel-column">
+                        <h4 class="panel-heading">INDUSTRIES</h4>
+                        <ul class="panel-list">
+                            <li>RETAIL</li>
+                            <li>REAL ESTATE</li>
+                            <li>AUTOMOTIVE</li>
+                            <li>INSURANCE</li>
+                        </ul>
+                    </div>
+                    <div class="panel-column">
+                        <h4 class="panel-heading">COMPANY</h4>
+                        <ul class="panel-list">
+                            <li>ABOUT</li>
+                            <li>CUSTOMER SHOWCASE</li>
+                            <li>DOCUMENTATION</li>
+                            <li>SECURITY</li>
+                            <li>CONTACT</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
