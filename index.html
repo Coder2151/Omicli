@@ -3,15 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omnicli - 3D Experience Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <title>Omicli - 3D Experience Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            font-family: 'Orbitron', 'Agency FB', 'Arial Narrow', sans-serif;
-            letter-spacing: 0.5px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            padding-bottom: 300px;
         }
         
         /* Navbar styles */
@@ -30,12 +31,11 @@
             z-index: 1000;
         }
         .navbar-brand {
-            font-family: 'Orbitron', 'Agency FB', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 700;
             font-size: 1.5rem;
             color: black;
             text-decoration: none;
-            letter-spacing: 1px;
         }
         .navbar-links {
             display: flex;
@@ -45,22 +45,20 @@
             transform: translateX(-50%);
         }
         .navbar-links a {
-            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 500;
             color: black;
             text-decoration: none;
-            letter-spacing: 0.8px;
         }
         .contact-button {
-            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 600;
             background-color: black;
             color: white;
             padding: 8px 15px;
             border-radius: 4px;
             text-decoration: none;
-            margin-right: 10px;
-            letter-spacing: 1px;
+            margin-right: 30px;
         }
         
         /* First section styles */
@@ -70,24 +68,22 @@
             margin: 0 auto;
         }
         .hero-title {
-            font-family: 'Orbitron', 'Agency FB', sans-serif;
-            font-weight: 900;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
             font-size: 3rem;
             margin-bottom: 1.5rem;
-            letter-spacing: 2px;
             text-transform: uppercase;
         }
         .hero-subtitle {
-            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 400;
             font-size: 1.2rem;
             margin-bottom: 2rem;
             line-height: 1.6;
-            letter-spacing: 1px;
         }
         .demo-button {
-            font-family: 'Orbitron', 'Agency FB', sans-serif;
-            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
             background-color: white;
             color: black;
             padding: 12px 30px;
@@ -95,7 +91,6 @@
             text-decoration: none;
             font-size: 1.1rem;
             transition: all 0.3s ease;
-            letter-spacing: 1.5px;
         }
         .demo-button:hover {
             transform: translateY(-2px);
@@ -112,20 +107,18 @@
             padding: 40px 20px;
         }
         .section-title {
-            font-family: 'Orbitron', 'Agency FB', sans-serif;
-            font-weight: 800;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
         .section-subtitle {
-            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
-            font-weight: 400;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
             font-size: 1.2rem;
             margin-bottom: 3rem;
             max-width: 600px;
-            letter-spacing: 0.8px;
         }
         .features-grid {
             display: flex;
@@ -150,19 +143,17 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         .feature-title {
-            font-family: 'Orbitron', 'Agency FB', sans-serif;
-            font-weight: 800;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
             font-size: 1.3rem;
             margin-bottom: 15px;
-            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
         .feature-description {
-            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 400;
             font-size: 0.9rem;
             line-height: 1.5;
-            letter-spacing: 0.8px;
         }
         
         /* Third section styles */
@@ -175,20 +166,18 @@
             padding: 40px 20px;
         }
         .comparison-title {
-            font-family: 'Orbitron', 'Agency FB', sans-serif;
-            font-weight: 800;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
-            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
         .comparison-subtitle {
-            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
-            font-weight: 400;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
             font-size: 1.2rem;
             margin-bottom: 3rem;
             max-width: 600px;
-            letter-spacing: 0.8px;
         }
         .comparison-table {
             width: 100%;
@@ -201,16 +190,16 @@
         }
         .comparison-table th, 
         .comparison-table td {
-            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
             padding: 15px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
             background-color: transparent;
-            letter-spacing: 0.7px;
         }
         .comparison-table th {
-            font-weight: 700;
+            font-weight: 600;
             font-size: 1.1rem;
             border-bottom: 2px solid rgba(255, 255, 255, 0.3);
             text-transform: uppercase;
@@ -220,11 +209,11 @@
         }
         .checkmark {
             color: #4CAF50;
-            font-weight: bold;
+            font-weight: 600;
         }
         .xmark {
             color: #f44336;
-            font-weight: bold;
+            font-weight: 600;
         }
 
         /* Fourth section styles */
@@ -260,30 +249,27 @@
             min-width: 250px;
         }
         .panel-title {
-            font-family: 'Orbitron', 'Agency FB', sans-serif;
-            font-weight: 800;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
             font-size: 2rem;
             margin-bottom: 1rem;
             color: white;
-            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
         .panel-subtitle {
-            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 400;
             font-size: 1rem;
             margin-bottom: 2rem;
             color: #aaa;
             font-style: italic;
-            letter-spacing: 0.8px;
         }
         .panel-heading {
-            font-family: 'Orbitron', 'Agency FB', sans-serif;
-            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
             font-size: 1.2rem;
             margin-bottom: 1rem;
             color: white;
-            letter-spacing: 1px;
             text-transform: uppercase;
         }
         .panel-list {
@@ -292,21 +278,19 @@
             margin: 0;
         }
         .panel-list li {
-            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 400;
             margin-bottom: 0.8rem;
             color: #ddd;
-            letter-spacing: 0.7px;
         }
         .powered-by {
-            font-family: 'Orbitron', 'Arial Narrow', sans-serif;
-            font-weight: 300;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
             font-size: 0.8rem;
             color: #777;
             margin-top: 2rem;
             text-align: center;
             width: 100%;
-            letter-spacing: 0.5px;
         }
         
         /* Existing styles */
@@ -317,6 +301,7 @@
             width: 100%;
             height: 100vh;
             z-index: -1;
+            pointer-events: none;
         }
         .content-section {
             min-height: 100vh;
@@ -326,13 +311,13 @@
             justify-content: center;
             align-items: center;
             box-sizing: border-box;
-            background-color: rgba(0, 0, 0, 0.5);
             color: white;
             text-align: center;
             margin-top: 60px;
+            background-color: transparent;
         }
         #progress-container {
-            font-family: 'Orbitron', 'Agency FB', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 600;
             position: fixed;
             top: 50%;
@@ -341,7 +326,112 @@
             color: white;
             font-size: 1.5rem;
             z-index: 100;
-            letter-spacing: 1px;
+        }
+
+        /* Footer/Contact Bar Styles */
+        .footer {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            z-index: 100;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .footer-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+
+        .contact-method:hover {
+            color: #4CAF50;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            margin-top: 40px;
+            color: #777;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-link {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+
+        .footer-link:hover {
+            color: #4CAF50;
+        }
+
+        @media (max-width: 768px) {
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .footer-title {
+                font-size: 1.5rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
     <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
@@ -357,24 +447,24 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="#" class="navbar-brand">OMNICLI</a>
+        <a href="index.html" class="navbar-brand">OMICLI</a>
         <div class="navbar-links">
-            <a href="#">SOLUTIONS</a>
-            <a href="#">INDUSTRIES</a>
-            <a href="#">PRICING</a>
-            <a href="#">DOCS</a>
+            <a href="solutions.html">SOLUTIONS</a>
+            <a href="industries.html">INDUSTRIES</a>
+            <a href="pricing.html">PRICING</a>
+            <a href="docs.html">DOCS</a>
         </div>
-        <a href="#" class="contact-button">CONTACT US</a>
+        <a href="#" class="contact-button">LIVE DEMO</a>
     </nav>
 
     <div id="canvas-container"></div>
-    <div id="progress-container">LOADING CONCEPT CAR...</div>
+    <div id="progress-container">LOADING CITY SCENE...</div>
     
-    <!-- First section - car loads here immediately -->
-    <div class="content-section">
+    <!-- First section - city loads here immediately -->
+    <div class="content-section" data-model="city">
         <div class="hero-content">
             <h1 class="hero-title">IMMERSE YOURSELF IN 3D EXPERIENCES</h1>
-            <p class="hero-subtitle">TRANSFORM YOUR VISUAL COMMERCE WITH AI-POWERED GAUSSIAN SPLATTING. CREATE INTERACTIVE 3D EXPERIENCES THAT CONVERT BROWSERS INTO BUYERS.</p>
+            <p class="hero-subtitle">Transform your visual commerce with AI-powered Gaussian Splatting. Create interactive 3D experiences that convert browsers into buyers.</p>
             <a href="#" class="demo-button">TRY 3D DEMO</a>
         </div>
     </div>
@@ -382,21 +472,21 @@
     <!-- Other sections with scroll-activated models -->
     <div class="content-section" data-model="livingroom">
         <div class="features-section">
-            <h2 class="section-title">WHY OMNICLI</h2>
-            <p class="section-subtitle">THE ONLY PLATFORM THAT DELIVERS PHOTOREALISTIC QUALITY, LIGHTNING SPEED, AND EFFORTLESS INTEGRATION</p>
+            <h2 class="section-title">WHY OMICLI</h2>
+            <p class="section-subtitle">The only platform that delivers photorealistic quality, lightning speed, and effortless integration</p>
             
             <div class="features-grid">
                 <div class="feature-card">
                     <h3 class="feature-title">PHOTOREALISTIC QUALITY</h3>
-                    <p class="feature-description">CINEMA-GRADE 3D MODELS FROM ORDINARY SMARTPHONE PHOTOS</p>
+                    <p class="feature-description">Cinema-grade 3D models from ordinary smartphone photos</p>
                 </div>
                 <div class="feature-card">
                     <h3 class="feature-title">LIGHTNING SPEED</h3>
-                    <p class="feature-description">100+ FPS WEBGPU RENDERING WITH INSTANT LOADING</p>
+                    <p class="feature-description">100+ FPS WebGPU rendering with instant loading</p>
                 </div>
                 <div class="feature-card">
                     <h3 class="feature-title">1-CLICK EMBED</h3>
-                    <p class="feature-description">COPY IFRAME CODE AND EMBED ANYWHERE IN SECONDS</p>
+                    <p class="feature-description">Copy iframe code and embed anywhere in seconds</p>
                 </div>
             </div>
         </div>
@@ -405,7 +495,7 @@
     <div class="content-section" data-model="bedroom">
         <div class="comparison-section">
             <h2 class="comparison-title">HOW WE COMPARE</h2>
-            <p class="comparison-subtitle">WHY YOU SHOULD CHOOSE OMNICLI</p>
+            <p class="comparison-subtitle">Why you should choose Omicli</p>
             
             <table class="comparison-table">
                 <thead>
@@ -418,44 +508,44 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>OMNICLI</strong><br>
-                            <span class="checkmark">✓ WEBGPU OPTIMIZED</span><br>
-                            <span class="checkmark">✓ 1-CLICK EMBED</span><br>
-                            <span class="checkmark">✓ MOBILE OPTIMIZED</span><br>
-                            <span class="checkmark">✓ SOC-2 COMPLIANT</span>
+                        <td><strong>OMICLI</strong><br>
+                            <span class="checkmark">✓ WebGPU optimized</span><br>
+                            <span class="checkmark">✓ 1-click embed</span><br>
+                            <span class="checkmark">✓ Mobile optimized</span><br>
+                            <span class="checkmark">✓ SOC-2 compliant</span>
                         </td>
-                        <td>PHOTOREALISTIC</td>
+                        <td>Photorealistic</td>
                         <td>10-20</td>
                         <td>100+ FPS</td>
                     </tr>
                     <tr>
                         <td><strong>MATTERPORT</strong><br>
-                            <span class="xmark">× REQUIRES SPECIAL CAMERA</span><br>
-                            <span class="xmark">× LIMITED CUSTOMIZATION</span><br>
-                            <span class="xmark">× HEAVY FILES</span>
+                            <span class="xmark">× Requires special camera</span><br>
+                            <span class="xmark">× Limited customization</span><br>
+                            <span class="xmark">× Heavy files</span>
                         </td>
-                        <td>GOOD</td>
-                        <td>360° SCAN</td>
+                        <td>Good</td>
+                        <td>360° scan</td>
                         <td>30-60 FPS</td>
                     </tr>
                     <tr>
                         <td><strong>THREEKIT</strong><br>
-                            <span class="xmark">× REQUIRES 3D MODELING</span><br>
-                            <span class="xmark">× COMPLEX SETUP</span><br>
-                            <span class="xmark">× ENTERPRISE ONLY</span>
+                            <span class="xmark">× Requires 3D modeling</span><br>
+                            <span class="xmark">× Complex setup</span><br>
+                            <span class="xmark">× Enterprise only</span>
                         </td>
-                        <td>SYNTHETIC</td>
-                        <td>3D MODEL</td>
+                        <td>Synthetic</td>
+                        <td>3D model</td>
                         <td>60 FPS</td>
                     </tr>
                     <tr>
                         <td><strong>LUMA AI</strong><br>
-                            <span class="xmark">× VIDEO REQUIRED</span><br>
-                            <span class="xmark">× LIMITED EDITING</span><br>
-                            <span class="xmark">× NO EMBED OPTIONS</span>
+                            <span class="xmark">× Video required</span><br>
+                            <span class="xmark">× Limited editing</span><br>
+                            <span class="xmark">× No embed options</span>
                         </td>
-                        <td>GOOD</td>
-                        <td>VIDEO</td>
+                        <td>Good</td>
+                        <td>Video</td>
                         <td>30 FPS</td>
                     </tr>
                 </tbody>
@@ -465,45 +555,84 @@
     
     <div class="content-section" data-model="kitchen">
         <div class="construction-section">
-            <h2>CONSTRUCTION</h2>
+            
             <div class="black-panel">
                 <div class="panel-content">
                     <div class="panel-column">
-                        <h3 class="panel-title">SPLATTECH</h3>
-                        <p class="panel-subtitle">TRANSFORMING VISUAL COMMERCE WITH AI-POWERED GAUSSIAN SPLATTING TECHNOLOGY. CREATE PHOTOREALISTIC 3D EXPERIENCES FROM ORDINARY PHOTOS.</p>
-                        <p class="powered-by">(POWERED BY GAUSSIAN SPLATTING™)</p>
+                        <h3 class="panel-title">OMICLI</h3>
+                        <p class="panel-subtitle">Transforming visual commerce with AI-powered Gaussian Splatting technology. Create photorealistic 3D experiences from ordinary photos.</p>
+                        <p class="powered-by">(Powered by Gaussian Splatting™)</p>
                     </div>
                     <div class="panel-column">
                         <h4 class="panel-heading">SOLUTIONS</h4>
                         <ul class="panel-list">
-                            <li>3D PRODUCT CONFIGURATOR</li>
-                            <li>AR EXPERIENCES</li>
+                            <li>3D Product Configurator</li>
+                            <li>AR Experiences</li>
                             <li>API & SDK</li>
                         </ul>
                     </div>
                     <div class="panel-column">
                         <h4 class="panel-heading">INDUSTRIES</h4>
                         <ul class="panel-list">
-                            <li>RETAIL</li>
-                            <li>REAL ESTATE</li>
-                            <li>AUTOMOTIVE</li>
-                            <li>INSURANCE</li>
+                            <li>Retail</li>
+                            <li>Real Estate</li>
+                            <li>Automotive</li>
+                            <li>Insurance</li>
                         </ul>
                     </div>
                     <div class="panel-column">
                         <h4 class="panel-heading">COMPANY</h4>
                         <ul class="panel-list">
-                            <li>ABOUT</li>
-                            <li>CUSTOMER SHOWCASE</li>
-                            <li>DOCUMENTATION</li>
-                            <li>SECURITY</li>
-                            <li>CONTACT</li>
+                            <li>About</li>
+                            <li>Customer Showcase</li>
+                            <li>Documentation</li>
+                            <li>Security</li>
+                            <li>Contact</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Footer/Contact Bar -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3 class="footer-title">READY TO TRANSFORM YOUR BUSINESS?</h3>
+                <p class="footer-subtitle">Contact us today to learn how our 3D solutions can elevate your customer experience.</p>
+            </div>
+            
+            <div class="contact-methods">
+                <a href="mailto:contact@omicli.com" class="contact-method">
+                    <span class="contact-icon">✉️</span>
+                    <span>omicli@gmail.com</span>
+                </a>
+                <a href="tel:+18005551234" class="contact-method">
+                    <span class="contact-icon">📞</span>
+                    <span>+1 (650) 521-3301</span>
+                </a>
+                <a href="https://maps.google.com" target="_blank" class="contact-method">
+                    <span class="contact-icon">📍</span>
+                    <span>San Francisco, CA</span>
+                </a>
+            </div>
+            
+            <div class="footer-links">
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="solutions.html" class="footer-link">Solutions</a>
+                <a href="industries.html" class="footer-link">Industries</a>
+                <a href="pricing.html" class="footer-link">Pricing</a>
+                <a href="#" class="footer-link">Documentation</a>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+            </div>
+            
+            <div class="copyright">
+                © 2025 Omicli. All rights reserved.
+            </div>
+        </div>
+    </footer>
     
     <script type="module" src="./main.js"></script>
 </body>

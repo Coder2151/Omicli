@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omicli - Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Orbitron', sans-serif;
+            overflow-x: hidden;
+            color: white;
+        }
+        
+        /* Navbar styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: black;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .navbar-links a {
+            font-weight: 500;
+            color: black;
+            text-decoration: none;
+            letter-spacing: 0.8px;
+        }
+        .contact-button {
+            font-weight: 600;
+            background-color: black;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-right: 30px;
+            letter-spacing: 1px;
+        }
+        
+        /* 3D Model Background */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+        }
+        
+        /* Content styles with translucent cards */
+        .docs-container {
+            max-width: 1100px;
+            margin: 100px auto 40px;
+            padding: 0 20px;
+        }
+        
+        .content-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 60px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #ddd;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 2rem;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        .code-block {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 20px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .code-comment {
+            color: #6A9955;
+        }
+        
+        .step {
+            margin-bottom: 40px;
+        }
+        
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #4CAF50;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .step-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4CAF50, transparent);
+        }
+        
+        .api-endpoint {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .endpoint-method {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        .endpoint-path {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+        }
+        
+        .endpoint-description {
+            margin: 15px 0 10px;
+            line-height: 1.6;
+        }
+        
+        .view-details {
+            display: inline-block;
+            background-color: transparent;
+            color: #4CAF50;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid #4CAF50;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .view-details:hover {
+            background-color: rgba(76, 175, 80, 0.2);
+        }
+        
+        .get-api-key {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 30px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .get-api-key:hover {
+            background-color: #3e8e41;
+            transform: translateY(-2px);
+        }
+
+        /* Footer styles */
+        .footer-section {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-title {
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        
+        .footer-subtitle {
+            font-weight: 400;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: #aaa;
+            font-style: italic;
+            letter-spacing: 0.8px;
+        }
+        
+        .footer-heading {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: white;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .footer-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-list li {
+            font-weight: 400;
+            margin-bottom: 0.8rem;
+            color: #ddd;
+            letter-spacing: 0.7px;
+        }
+        
+        .powered-by {
+            font-weight: 300;
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 2rem;
+            text-align: center;
+            width: 100%;
+            letter-spacing: 0.5px;
+        }
+        
+        #progress-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            z-index: 100;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        @media (max-width: 1024px) {
+            .footer-content {
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .content-card {
+                padding: 30px 20px;
+            }
+            
+            .navbar-links {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">OMICLI</a>
+        <div class="navbar-links">
+            <a href="solutions.html">SOLUTIONS</a>
+            <a href="industries.html">INDUSTRIES</a>
+            <a href="pricing.html">PRICING</a>
+            <a href="docs.html">DOCS</a>
+        </div>
+        <a href="#" class="contact-button">LIVE DEMO</a>
+    </nav>
+
+    <!-- 3D Canvas Container -->
+    <div id="canvas-container"></div>
+    <div id="progress-container">LOADING 3D MODELS...</div>
+    
+    <!-- Main Content -->
+    <div class="docs-container">
+        <!-- Hero Card -->
+        <div class="content-card" data-model="livingroom">
+            <h1 class="hero-title">Developer Documentation</h1>
+            <p class="hero-subtitle">Get Started in Minutes</p>
+            <p class="hero-subtitle">Simple API calls and one-line embeds. Get your first 3D model up and running with just a few lines of code.</p>
+        </div>
+        
+        <!-- Quick Start Guide Card -->
+        <div class="content-card" data-model="bedroom">
+            <h2 class="section-title">Quick Start Guide</h2>
+            <p class="section-subtitle">From photos to embedded 3D viewer in 2 simple steps</p>
+            
+            <div class="step">
+                <h3 class="step-title">1. Upload Your Photos</h3>
+                <p>Use our API to upload 10-20 photos of your product from different angles. Our AI will process them into a 3D model in under 10 minutes.</p>
+                <div class="code-block">
+                    <span class="code-comment"># Example API request to create a model</span><br>
+                    curl -X POST https://api.splattech.com/v1/models \<br>
+                    -H "Authorization: Bearer YOUR_API_KEY" \<br>
+                    -H "Content-Type: multipart/form-data" \<br>
+                    -F "name=my-product" \<br>
+                    -F "photos=@photo1.jpg" \<br>
+                    -F "photos=@photo2.jpg" \<br>
+                    -F "photos=@photo3.jpg"<br><br>
+                    
+                    <span class="code-comment"># Response:</span><br>
+                    {<br>
+                    &nbsp;&nbsp;"id": "model_abc123",<br>
+                    &nbsp;&nbsp;"name": "my-product",<br>
+                    &nbsp;&nbsp;"status": "processing",<br>
+                    &nbsp;&nbsp;"created_at": "2024-01-15T10:30:002"<br>
+                    }
+                </div>
+            </div>
+            
+            <div class="step">
+                <h3 class="step-title">2. Embed Your 3D Viewer</h3>
+                <p>Copy the embed code and paste it into your website. The viewer will automatically load with WebGPU for maximum performance, falling back to WebGL when needed.</p>
+                <div class="code-block">
+                    <span class="code-comment">&lt;!-- Simple iframe embed --&gt;</span><br>
+                    &lt;iframe<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;src="https://viewer.splattech.com/model_abc123"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;width="808"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;height="608"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;frameborder="0"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;allowfullscreen&gt;<br>
+                    &lt;/iframe&gt;<br><br>
+                    
+                    <span class="code-comment">&lt;!-- JavaScript SDK --&gt;</span><br>
+                    &lt;div id="splat-viewer"&gt;&lt;/div&gt;<br>
+                    &lt;script src="https://cdn.splattech.com/viewer.js"&gt;&lt;/script&gt;<br>
+                    &lt;script&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;SplatViewer.init({<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;container: '#splat-viewer',<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;modelId: 'model_abc123',<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;width: 808,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;height: 608,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;autoRotate: true,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;controls: true<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+                    &lt;/script&gt;
+                </div>
+            </div>
+        </div>
+        
+        <!-- API Reference Card -->
+        <div class="content-card" data-model="kitchen">
+            <h2 class="section-title">API Reference</h2>
+            <p class="section-subtitle">Complete documentation for all endpoints and parameters</p>
+            
+            <div class="api-endpoint">
+                <span class="endpoint-method">POST</span>
+                <span class="endpoint-path">/v1/models</span>
+                <p class="endpoint-description">
+                    <strong>Create Model</strong><br>
+                    Upload photos and create a new 3D model. Supports up to 20 images per model with automatic processing.
+                </p>
+                <a href="#" class="view-details">View Details</a>
+            </div>
+            
+            <div class="api-endpoint">
+                <span class="endpoint-method">GET</span>
+                <span class="endpoint-path">/v1/models/:id</span>
+                <p class="endpoint-description">
+                    <strong>Get Model Status</strong><br>
+                    Check processing status and retrieve embed codes for completed models. Includes viewer URL and metadata.
+                </p>
+                <a href="#" class="view-details">View Details</a>
+            </div>
+            
+            <a href="#" class="get-api-key">Get API Key</a>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer-section">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3 class="footer-title">OMICLI</h3>
+                <p class="footer-subtitle">TRANSFORMING VISUAL COMMERCE WITH AI-POWERED GAUSSIAN SPLATTING TECHNOLOGY. CREATE PHOTOREALISTIC 3D EXPERIENCES FROM ORDINARY PHOTOS.</p>
+                <p class="powered-by">(POWERED BY GAUSSIAN SPLATTING™)</p>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-heading">SOLUTIONS</h4>
+                <ul class="footer-list">
+                    <li>3D PRODUCT CONFIGURATOR</li>
+                    <li>AR EXPERIENCES</li>
+                    <li>API & SDK</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-heading">INDUSTRIES</h4>
+                <ul class="footer-list">
+                    <li>RETAIL</li>
+                    <li>REAL ESTATE</li>
+                    <li>AUTOMOTIVE</li>
+                    <li>INSURANCE</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-heading">COMPANY</h4>
+                <ul class="footer-list">
+                    <li>ABOUT</li>
+                    <li>CUSTOMER SHOWCASE</li>
+                    <li>DOCUMENTATION</li>
+                    <li>SECURITY</li>
+                    <li>CONTACT</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@v0.163.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@v0.163.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="./main.js"></script>
+    <script>
+        // Scroll animation for content cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const contentCards = document.querySelectorAll('.content-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            contentCards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

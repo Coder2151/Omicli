@@ -2,6 +2,9 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
+// Check if we're on the solutions page
+const isSolutionsPage = window.location.pathname.includes('solutions.html');
+
 // Initialize Three.js scene
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -83,9 +86,16 @@ function prepareModel(model, isCar = false) {
     return model;
 }
 
-// First load the car model immediately
+// First load the car model immediately (only on main page)
+if (!isSolutionsPage) {
+    loadCarModel();
+} else {
+    loadOtherModels();
+    document.getElementById('progress-container').style.display = 'none';
+}
+
 function loadCarModel() {
-    const carPath = 'public/vehicle_-_subaru_brz_rocket_bunny/scene.gltf';
+    const carPath = 'public/city_gltf/scene.gltf';
     
     loader.load(
         carPath,
@@ -94,14 +104,11 @@ function loadCarModel() {
             const model = prepareModel(gltf.scene, true);
             scene.add(model);
             currentModel = model;
-            models.car = model; // Store car model in models object
+            models.car = model;
             document.getElementById('progress-container').style.display = 'none';
-            
-            // Then load other models in background
             loadOtherModels();
         },
         (xhr) => {
-            // Progress callback
             const percentLoaded = (xhr.loaded / xhr.total * 100).toFixed(0);
             document.getElementById('progress-container').textContent = 
                 `LOADING CONCEPT CAR... ${percentLoaded}%`;
@@ -132,6 +139,12 @@ function loadOtherModels() {
                 model.visible = false;
                 scene.add(model);
                 models[key] = model;
+                
+                // On solutions page, show first model by default
+                if (isSolutionsPage && key === 'livingroom' && !currentModel) {
+                    currentModel = model;
+                    model.visible = true;
+                }
             },
             undefined,
             (error) => {
@@ -143,11 +156,11 @@ function loadOtherModels() {
 
 // Handle model switching for scroll sections
 function handleScroll() {
-    const sections = document.querySelectorAll('.content-section');
+    const sections = document.querySelectorAll(isSolutionsPage ? '.solution-section' : '.industry-section');
     const scrollPosition = window.scrollY;
     
-    // Show car model if we're back at the first section
-    if (scrollPosition < sections[1].offsetTop - window.innerHeight / 2) {
+    // Show default model if we're at the top (only on main page)
+    if (!isSolutionsPage && scrollPosition < sections[1].offsetTop - window.innerHeight / 2) {
         if (currentModel && currentModel !== models.car) {
             currentModel.visible = false;
             models.car.visible = true;
@@ -158,10 +171,8 @@ function handleScroll() {
         return;
     }
     
-    // Handle other sections
-    sections.forEach((section, index) => {
-        if (index === 0) return; // Skip first section
-        
+    // Handle sections
+    sections.forEach((section) => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         
@@ -186,9 +197,7 @@ function switchModel(modelKey) {
     }
 }
 
-// Start loading the car model immediately
-loadCarModel();
-
+// Event listeners
 window.addEventListener('scroll', handleScroll);
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
